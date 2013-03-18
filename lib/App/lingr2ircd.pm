@@ -135,7 +135,7 @@ sub setup_lingr {
             if ( my $msg = $event->{message} ) {
                 print sprintf "[%s] %s: %s\n", $msg->{room}, $msg->{nickname}, $msg->{text};
 
-                if ($msg->{speaker_id} eq $self->lingr_user) {
+                if ($msg->{mine}) {
                     print "It's me.\n";
                 } else {
                     $self->ircd->daemon_cmd_privmsg("\@$msg->{speaker_id}", '#' . $msg->{room}, encode_utf8($msg->{text}));
